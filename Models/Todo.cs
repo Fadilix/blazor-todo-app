@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlazorTodoApp.Models
 {
+    [Table("todo")]
     public class Todo
     {
         [Key]
@@ -19,10 +20,5 @@ namespace BlazorTodoApp.Models
         [Column("is_completed")]
         public bool IsCompleted { get; set; }
 
-        
-        [ForeignKey("User")]
-        public int UserId { get; set; }
-
-        public User User { get; set; }
     }
 }

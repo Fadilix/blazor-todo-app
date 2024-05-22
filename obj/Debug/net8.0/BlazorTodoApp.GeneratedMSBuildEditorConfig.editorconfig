@@ -22,6 +22,10 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/MSI Stealth/source/repos/BlazorTodoApp/BlazorTodoApp/Components/Pages/AddTodo.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBZGRUb2RvLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/MSI Stealth/source/repos/BlazorTodoApp/BlazorTodoApp/Components/Pages/Counter.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb3VudGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
@@ -32,6 +36,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/MSI Stealth/source/repos/BlazorTodoApp/BlazorTodoApp/Components/Pages/Home.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIb21lLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MSI Stealth/source/repos/BlazorTodoApp/BlazorTodoApp/Components/Pages/TodoList.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xUb2RvTGlzdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/MSI Stealth/source/repos/BlazorTodoApp/BlazorTodoApp/Components/Pages/Weather.razor]

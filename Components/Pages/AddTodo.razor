@@ -1,0 +1,45 @@
+﻿@page "/addtodo"
+@rendermode InteractiveServer
+@using BlazorTodoApp.Models
+@using BlazorTodoApp.Services
+@inject TodoService todoService
+@inject NavigationManager navigationManager
+
+<h3>Add Todo</h3>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label for="titleInput" class="form-label">Title</label>
+                <input id="titleInput" type="text" class="form-control" @bind="todo.Title" />
+            </div>
+            <div class="mb-3">
+                <label for="descriptionInput" class="form-label">Description</label>
+                <input id="descriptionInput" type="text" class="form-control" @bind="todo.Description" />
+            </div>
+            <button type="button" class="btn btn-primary me-3" @onclick="HandleSubmit">Add Todo</button>
+            <a class="btn btn-primary col-md-3" href="todolist">See todo list</a>
+        </div>
+    </div>
+</div>
+
+@if (added)
+{
+    <div class="alert alert-success mt-4">
+        <p>Your todo has been added successfully</p>
+    </div>
+}
+
+@code {
+    Todo todo = new Todo();
+    bool added = false;
+    protected async void HandleSubmit()
+    {
+        await todoService.AddTodoAsync(todo);
+        added = true;
+        todo = new Todo();
+        StateHasChanged();
+    }
+
+}

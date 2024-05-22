@@ -1,5 +1,6 @@
 using BlazorTodoApp.Components;
 using BlazorTodoApp.Context;
+using BlazorTodoApp.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,13 +10,12 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 // My services 
-// ....
-
+builder.Services.AddScoped<TodoService>();
 
 // Connection to the 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
-
+    
 
 var app = builder.Build();
 

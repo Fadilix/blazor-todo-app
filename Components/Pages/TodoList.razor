@@ -1,0 +1,64 @@
+﻿@page "/todolist"
+@rendermode InteractiveServer
+@using BlazorTodoApp.Models
+@using BlazorTodoApp.Services
+@inject TodoService todoService
+
+<h3>TodoList</h3>
+
+@if (todos != null)
+{
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>IsCompleted</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (Todo todo in todos)
+                {
+                    <tr>
+                        <td>@todo.Title</td>
+                        <td>@todo.Description</td>
+                        <td>
+                            @if (todo.IsCompleted)
+                            {
+                                <span class="badge bg-success">Completed</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-warning text-dark">Ongoing</span>
+                            }
+                        </td>
+                        <td>
+                            <button class="btn btn-danger" @onclick="() => deleteTodo(todo)">Delete</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <p><em>Loading...</em></p>
+}
+@code {
+    List<Todo> todos;
+
+    protected override async Task OnInitializedAsync()
+    {
+        todos = await Task.Run(() => todoService.GetAllTodos());
+    }
+
+    protected async void deleteTodo(Todo todo)
+    {
+        await Task.Run(() => todoService.DeleteATodo(todo.Id));
+    }
+
+}
