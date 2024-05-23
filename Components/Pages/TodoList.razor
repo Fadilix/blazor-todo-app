@@ -3,6 +3,7 @@
 @using BlazorTodoApp.Models
 @using BlazorTodoApp.Services
 @inject TodoService todoService
+@inject IJSRuntime JSRuntime
 
 <h3>TodoList</h3>
 
@@ -36,9 +37,9 @@
                             }
                         </td>
                         <td>
-                            <button class="btn btn-success me-3" @onclick="() => CompleteTodoAsync(todo)">@(@todo.IsCompleted ? "Complete" : "Uncomplete")</button>
+                            <button class="btn btn-success me-3" @onclick="() => CompleteTodoAsync(todo)">@(@todo.IsCompleted ? "Uncomplete" : "Complete")</button>
                             <a class="btn btn-warning me-3" href="updatetodo/@todo.Id">Update</a>
-                            <button class="btn btn-danger me-3" @onclick="() => DeleteTodoAsync(todo)">Delete</button>
+                            <button class="btn btn-danger me-3" @onclick="() => ConfirmDelete(todo)">Delete</button>
                         </td>
                     </tr>
                 }
@@ -67,6 +68,7 @@ else
 
     protected async Task DeleteTodoAsync(Todo todo)
     {
+
         await todoService.DeleteATodo(todo.Id);
         todos.Remove(todo);
         StateHasChanged();
@@ -77,6 +79,16 @@ else
         todo.IsCompleted = !todo.IsCompleted;
         await todoService.UpdateTodo(todo);
         StateHasChanged();
+        
+    }
+
+    protected async Task ConfirmDelete(Todo todo)
+    {
+        bool isConfirmed = await JSRuntime.InvokeAsync<bool>("confirmDelete");
+        if (isConfirmed)
+        {
+            await DeleteTodoAsync(todo);
+        }
     }
 }
 

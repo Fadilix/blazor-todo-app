@@ -40,6 +40,14 @@
         added = true;
         todo = new Todo();
         StateHasChanged();
+        await ResetAddedToFalse();
+    }
+
+    private async Task ResetAddedToFalse()
+    {
+        await Task.Delay(3000);
+        added = false;
+        StateHasChanged();
     }
 
 }
