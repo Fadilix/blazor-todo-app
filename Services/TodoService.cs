@@ -59,6 +59,7 @@ namespace BlazorTodoApp.Services
                 return false;
 
             _db.Todos.Remove(todo);
+            await _db.SaveChangesAsync();
             return true;
         }
 

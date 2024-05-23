@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
+
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: "Manrope", sans-serif;
 }
+
 
 a, .btn-link {
     color: #006bb7;
