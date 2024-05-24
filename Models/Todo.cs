@@ -9,9 +9,7 @@ namespace BlazorTodoApp.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
         [Column("title")]
-        [StringLength(100, ErrorMessage = "Should not be more than 100")]
         public string Title { get; set; }
 
         [Column("description")]

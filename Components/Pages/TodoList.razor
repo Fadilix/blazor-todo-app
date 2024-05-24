@@ -2,8 +2,8 @@
 @rendermode InteractiveServer
 @using BlazorTodoApp.Models
 @using BlazorTodoApp.Services
+
 @inject TodoService todoService
-@inject IJSRuntime JSRuntime
 
 <PageTitle>Todo list</PageTitle>
 <h3>TodoList</h3>
@@ -69,7 +69,6 @@ else
 
     protected async Task DeleteTodoAsync(Todo todo)
     {
-
         await todoService.DeleteATodo(todo.Id);
         todos.Remove(todo);
         StateHasChanged();
@@ -83,9 +82,9 @@ else
         
     }
 
-    protected async Task ConfirmDelete(Todo todo)
-    {
-            await DeleteTodoAsync(todo);
-    }
+    // protected async Task ConfirmDelete(Todo todo)
+    // {
+    //         await DeleteTodoAsync(todo);
+    // }
 }
 
