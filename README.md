@@ -7,7 +7,7 @@ This todo app project is made to learn CRUD operations using **Blazor Web App**.
 - Bootstrap
 
 ## Functionalities
-- Add ad todo
+- Add a todo
 - Display todos registered in the database
 - Update a todo
 - Delete a todo
