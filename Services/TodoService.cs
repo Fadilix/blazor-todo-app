@@ -69,7 +69,5 @@ namespace BlazorTodoApp.Services
             await _db.SaveChangesAsync();
             return true;
         }
-
-
     }
 }

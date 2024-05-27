@@ -1,7 +1,10 @@
 using BlazorTodoApp.Components;
 using BlazorTodoApp.Context;
+using BlazorTodoApp.Models;
 using BlazorTodoApp.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +14,10 @@ builder.Services.AddRazorComponents()
 
 // My services 
 builder.Services.AddScoped<TodoService>();
+
+builder.Services.AddIdentity<User, IdentityRole>()
+        .AddEntityFrameworkStores<AppDbContext>()
+        .AddDefaultTokenProviders();
 
 // Connection to the 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
