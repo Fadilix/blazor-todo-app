@@ -17,6 +17,5 @@ namespace BlazorTodoApp.Models
 
         [Column("is_completed")]
         public bool IsCompleted { get; set; }
-
     }
 }

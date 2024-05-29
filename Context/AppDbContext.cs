@@ -1,17 +1,51 @@
-﻿    using BlazorTodoApp.Models;
-    using Microsoft.EntityFrameworkCore;
+﻿using BlazorTodoApp.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
-    namespace BlazorTodoApp.Context
+namespace BlazorTodoApp.Context
+{
+    public class AppDbContext : IdentityDbContext<User>
     {
-        public class AppDbContext : DbContext
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+            base.OnModelCreating(builder);
 
-            protected override void OnModelCreating(ModelBuilder modelBuilder)
+            // configured keys here because of an error
+            builder.Entity<IdentityUserLogin<string>>(entity =>
             {
-     
-            }
+                entity.HasKey(login => new { login.LoginProvider, login.ProviderKey });
+            });
 
-            public DbSet<Todo> Todos { get; set; }
+            builder.Entity<IdentityUserRole<string>>(entity =>
+            {
+                entity.HasKey(role => new { role.UserId, role.RoleId });
+            });
+
+            builder.Entity<IdentityUserToken<string>>(entity =>
+            {
+                entity.HasKey(token => new { token.UserId, token.LoginProvider, token.Name });
+            });
+
+
+            // Creating the userr roles
+
+            var admin = new IdentityRole("admin");
+            admin.NormalizedName = "admin";
+
+            var client = new IdentityRole("client");
+            client.NormalizedName = "client";
+
+            var seller = new IdentityRole("seller");
+            seller.NormalizedName = "seller";
+
+            builder.Entity<IdentityRole>().HasData(admin, client, seller);
+
         }
+        public DbSet<Todo> Todos { get; set; }
+
+
     }
+}
