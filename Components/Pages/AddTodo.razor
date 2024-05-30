@@ -5,6 +5,9 @@
 @inject TodoService todoService
 @inject NavigationManager navigationManager
 
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
 <PageTitle>Add todo</PageTitle>
 <h3>Add Todo</h3>
 
@@ -33,6 +36,7 @@
 }
 
 @code {
+
     Todo todo = new Todo();
     bool added = false;
     protected async void HandleSubmit()

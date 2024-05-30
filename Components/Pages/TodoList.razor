@@ -5,6 +5,9 @@
 
 @inject TodoService todoService
 
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
 <PageTitle>Todo list</PageTitle>
 <h3>TodoList</h3>
 
