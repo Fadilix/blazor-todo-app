@@ -7,10 +7,10 @@
 @using Microsoft.AspNetCore.WebUtilities
 @using BlazorTodoApp.Context
 
-@inject UserManager<User> UserManager
-@inject IUserStore<User> UserStore
-@inject SignInManager<User> SignInManager
-@inject IEmailSender<User> EmailSender
+@inject UserManager<AppUser> UserManager
+@inject IUserStore<AppUser> UserStore
+@inject SignInManager<AppUser> SignInManager
+@inject IEmailSender<AppUser> EmailSender
 @inject ILogger<Register> Logger
 @inject NavigationManager NavigationManager
 @inject IdentityRedirectManager RedirectManager
@@ -74,7 +74,7 @@
 
     public async Task RegisterUser(EditContext editContext)
     {
-        var user = new User()
+        var user = new AppUser()
         {
             Name = Input.Name,
             CreatedAt = DateTime.Now,
@@ -113,26 +113,26 @@
         RedirectManager.RedirectTo(ReturnUrl);
     }
 
-    private User CreateUser()
+    private AppUser CreateUser()
     {
         try
         {
-            return Activator.CreateInstance<User>();
+            return Activator.CreateInstance<AppUser>();
         }
         catch
         {
-            throw new InvalidOperationException($"Can't create an instance of '{nameof(User)}'. " +
-                $"Ensure that '{nameof(User)}' is not an abstract class and has a parameterless constructor.");
+            throw new InvalidOperationException($"Can't create an instance of '{nameof(AppUser)}'. " +
+                $"Ensure that '{nameof(AppUser)}' is not an abstract class and has a parameterless constructor.");
         }
     }
 
-    private IUserEmailStore<User> GetEmailStore()
+    private IUserEmailStore<AppUser> GetEmailStore()
     {
         if (!UserManager.SupportsUserEmail)
         {
             throw new NotSupportedException("The default UI requires a user store with email support.");
         }
-        return (IUserEmailStore<User>)UserStore;
+        return (IUserEmailStore<AppUser>)UserStore;
     }
 
     private sealed class InputModel

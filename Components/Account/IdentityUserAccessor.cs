@@ -4,9 +4,9 @@ using BlazorTodoApp.Models;
 
 namespace BlazorTodoApp.Components.Account
 {
-    internal sealed class IdentityUserAccessor(UserManager<User> userManager, IdentityRedirectManager redirectManager)
+    internal sealed class IdentityUserAccessor(UserManager<AppUser> userManager, IdentityRedirectManager redirectManager)
     {
-        public async Task<User> GetRequiredUserAsync(HttpContext context)
+        public async Task<AppUser> GetRequiredUserAsync(HttpContext context)
         {
             var user = await userManager.GetUserAsync(context.User);
 

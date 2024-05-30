@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace BlazorTodoApp.Context
 {
-    public class AppDbContext : IdentityDbContext<User>
+    public class AppDbContext : IdentityDbContext<AppUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 

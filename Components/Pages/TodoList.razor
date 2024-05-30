@@ -4,8 +4,11 @@
 @using BlazorTodoApp.Services
 
 @inject TodoService todoService
-
+@using Microsoft.AspNetCore.Identity
+@inject AuthenticationStateProvider authenticationStateProvider
 @using Microsoft.AspNetCore.Authorization
+@using System.Security.Claims
+
 @attribute [Authorize]
 
 <PageTitle>Todo list</PageTitle>
@@ -61,18 +64,27 @@ else
 
     protected string formatDescription(string text)
     {
-        text = text.Length >= 20 ? text.Substring(0, 20) + "..." : text;
+        text = text.Length >= 20 ? text.Substring(0, 30) + "..." : text;
         return text;
     }
 
+    string UserId;
+
     protected override async Task OnInitializedAsync()
     {
-        todos = await todoService.GetAllTodos();
+        var authState = await authenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity.IsAuthenticated)
+        {
+            UserId = user.FindFirstValue(ClaimTypes.NameIdentifier);
+            todos = await todoService.GetAllTodosAsync(UserId);
+        }
     }
 
     protected async Task DeleteTodoAsync(Todo todo)
     {
-        await todoService.DeleteATodo(todo.Id);
+        await todoService.DeleteTodoByIdAsync(todo.Id);
         todos.Remove(todo);
         StateHasChanged();
     }
@@ -80,7 +92,7 @@ else
     protected async Task CompleteTodoAsync(Todo todo)
     {
         todo.IsCompleted = !todo.IsCompleted;
-        await todoService.UpdateTodo(todo);
+        await todoService.UpdateTodoAsync(todo);
         StateHasChanged();
         
     }

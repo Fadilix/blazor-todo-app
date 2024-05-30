@@ -45,12 +45,12 @@
 
     protected override async Task OnInitializedAsync()
     {
-        todo = await todoService.GetTodoById(id);
+        todo = await todoService.GetTodoByIdAsync(id);
     }
 
     protected async Task HandleSubmit()
     {
-        await todoService.UpdateTodo(todo);
+        await todoService.UpdateTodoAsync(todo);
         StateHasChanged();
         navigationManager.NavigateTo("todolist");
     }

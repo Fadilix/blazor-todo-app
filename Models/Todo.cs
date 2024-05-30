@@ -10,12 +10,19 @@ namespace BlazorTodoApp.Models
         public int Id { get; set; }
 
         [Column("title")]
+        [Required]
         public string Title { get; set; }
 
         [Column("description")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         [Column("is_completed")]
         public bool IsCompleted { get; set; }
+
+        [Column("user_id")]
+        public string UserId { get; set; }
+
+        [ForeignKey("UserId")]
+        public AppUser User { get; set; }
     }
 }

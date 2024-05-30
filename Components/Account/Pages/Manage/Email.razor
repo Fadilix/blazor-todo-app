@@ -7,8 +7,8 @@
 @using Microsoft.AspNetCore.WebUtilities
 @using BlazorTodoApp.Context
 
-@inject UserManager<User> UserManager
-@inject IEmailSender<User> EmailSender
+@inject UserManager<AppUser> UserManager
+@inject IEmailSender<AppUser> EmailSender
 @inject IdentityUserAccessor UserAccessor
 @inject NavigationManager NavigationManager
 
@@ -55,7 +55,7 @@
 
 @code {
     private string? message;
-    private User user = default!;
+    private AppUser user = default!;
     private string? email;
     private bool isEmailConfirmed;
 

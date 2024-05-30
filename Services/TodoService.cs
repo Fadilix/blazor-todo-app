@@ -1,58 +1,73 @@
 ﻿using BlazorTodoApp.Context;
 using BlazorTodoApp.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Runtime.InteropServices.Marshalling;
 
 namespace BlazorTodoApp.Services
 {
     public class TodoService
     {
-        public readonly AppDbContext _db;
+        private readonly AppDbContext _db;
 
         public TodoService(AppDbContext db)
         {
             _db = db;
         }
 
-        // get all todos
-
-        public async Task<List<Todo>> GetAllTodos()
+        // Get all todos
+        public async Task<List<Todo>> GetAllTodosAsync(string userId)
         {
-            return await _db.Todos.ToListAsync();
+            return await _db.Todos.Where(t => t.UserId == userId).ToListAsync();
         }
 
-
-        // get a todo by id
-
-        public async Task<Todo> GetTodoById(int id)
+        // Get a todo by id
+        public async Task<Todo> GetTodoByIdAsync(int id)
         {
-            return await _db.Todos.FindAsync(id);
+            return await _db.Todos.Include(t => t.User).FirstOrDefaultAsync(t => t.Id == id);
         }
 
-
-        // add a todo
+        // Add a todo
         public async Task<bool> AddTodoAsync(Todo todo)
         {
+            // Ensure the UserId is set and User is properly associated
+            if (string.IsNullOrEmpty(todo.UserId))
+            {
+                throw new ArgumentException("Todo must have a UserId.");
+            }
+
+            var user = await _db.Users.FindAsync(todo.UserId);
+            if (user == null)
+            {
+                throw new ArgumentException("User not found.");
+            }
+
+            // Associate the user with the todo
+            todo.User = user;
+
             await _db.Todos.AddAsync(todo);
             await _db.SaveChangesAsync();
             return true;
         }
 
 
-        // Get todos for a user
-        //public async Task<List<Todo>> GetTodosForUser(int userId)
-        //{
-        //    return await _db.Todos.Where(t => t.UserId == userId).ToListAsync();
-        //}
+        // Get todos for a specific user
+        public async Task<List<Todo>> GetTodosForUserAsync(string userId)
+        {
+            return await _db.Todos
+                            .Where(t => t.UserId == userId)
+                            .Include(t => t.User)
+                            .ToListAsync();
+        }
 
-        public async Task<bool> UpdateTodo(Todo todo)
+        // Update a todo
+        public async Task<bool> UpdateTodoAsync(Todo todo)
         {
             _db.Todos.Update(todo);
             await _db.SaveChangesAsync();
             return true;
         }
 
-        public async Task<bool> DeleteATodo(int id)
+        // Delete a todo by id
+        public async Task<bool> DeleteTodoByIdAsync(int id)
         {
             var todo = await _db.Todos.FindAsync(id);
             if (todo == null)
@@ -63,7 +78,8 @@ namespace BlazorTodoApp.Services
             return true;
         }
 
-        public async Task<bool> DeleteTodo(Todo todo)
+        // Delete a todo
+        public async Task<bool> DeleteTodoAsync(Todo todo)
         {
             _db.Todos.Remove(todo);
             await _db.SaveChangesAsync();

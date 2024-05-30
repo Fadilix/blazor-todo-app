@@ -4,6 +4,7 @@ using BlazorTodoApp.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorTodoApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240530030540_TodoXUserMigration_ç_è")]
+    partial class TodoXUserMigration_ç_è
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,6 +37,9 @@ namespace BlazorTodoApp.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("description");
 
+                    b.Property<string>("IdUser")
+                        .HasColumnType("varchar(255)");
+
                     b.Property<bool>("IsCompleted")
                         .HasColumnType("tinyint(1)")
                         .HasColumnName("is_completed");
@@ -45,12 +51,12 @@ namespace BlazorTodoApp.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("longtext")
                         .HasColumnName("user_id");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("IdUser");
 
                     b.ToTable("todo");
                 });
@@ -153,19 +159,19 @@ namespace BlazorTodoApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6dd9eb64-5c7d-4df8-8083-645a10093bbe",
+                            Id = "2f874acc-6f0e-40f4-bce5-1cf05bd5afb4",
                             Name = "admin",
                             NormalizedName = "admin"
                         },
                         new
                         {
-                            Id = "ad82ddda-d9b6-45c8-b843-4c58623b66ca",
+                            Id = "d0c0dda9-d781-4edd-83d6-122a5470d2f2",
                             Name = "client",
                             NormalizedName = "client"
                         },
                         new
                         {
-                            Id = "fab68e73-9dd9-4e8f-875b-993342dd3645",
+                            Id = "de85c08e-b5be-4a1c-8466-16d9880e580a",
                             Name = "seller",
                             NormalizedName = "seller"
                         });
@@ -281,9 +287,7 @@ namespace BlazorTodoApp.Migrations
                 {
                     b.HasOne("BlazorTodoApp.Models.User", "User")
                         .WithMany("Todos")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IdUser");
 
                     b.Navigation("User");
                 });

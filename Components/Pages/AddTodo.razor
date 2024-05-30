@@ -4,8 +4,12 @@
 @using BlazorTodoApp.Services
 @inject TodoService todoService
 @inject NavigationManager navigationManager
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<AppUser> userManager
+@inject AuthenticationStateProvider authenticationStateProvider
 
 @using Microsoft.AspNetCore.Authorization
+@using System.Security.Claims
 @attribute [Authorize]
 
 <PageTitle>Add todo</PageTitle>
@@ -39,6 +43,18 @@
 
     Todo todo = new Todo();
     bool added = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await authenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity.IsAuthenticated)
+        {
+            todo.UserId = user.FindFirstValue(ClaimTypes.NameIdentifier);
+        }
+    }
+
     protected async void HandleSubmit()
     {
         await todoService.AddTodoAsync(todo);

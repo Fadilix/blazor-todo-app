@@ -5,8 +5,8 @@
 @using Microsoft.AspNetCore.WebUtilities
 @using BlazorTodoApp.Context
 
-@inject UserManager<User> UserManager
-@inject SignInManager<User> SignInManager
+@inject UserManager<AppUser> UserManager
+@inject SignInManager<AppUser> SignInManager
 @inject IdentityRedirectManager RedirectManager
 
 <PageTitle>Confirm email change</PageTitle>

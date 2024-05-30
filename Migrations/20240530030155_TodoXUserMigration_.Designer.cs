@@ -4,6 +4,7 @@ using BlazorTodoApp.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorTodoApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240530030155_TodoXUserMigration_")]
+    partial class TodoXUserMigration_
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -153,19 +156,19 @@ namespace BlazorTodoApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6dd9eb64-5c7d-4df8-8083-645a10093bbe",
+                            Id = "bae1a1da-5b3d-4c31-939b-c87f43f184d8",
                             Name = "admin",
                             NormalizedName = "admin"
                         },
                         new
                         {
-                            Id = "ad82ddda-d9b6-45c8-b843-4c58623b66ca",
+                            Id = "88ecbcff-9cfc-4054-bbae-2be980427480",
                             Name = "client",
                             NormalizedName = "client"
                         },
                         new
                         {
-                            Id = "fab68e73-9dd9-4e8f-875b-993342dd3645",
+                            Id = "07f96bd9-f937-4867-9af3-e8abd31ba3b9",
                             Name = "seller",
                             NormalizedName = "seller"
                         });
