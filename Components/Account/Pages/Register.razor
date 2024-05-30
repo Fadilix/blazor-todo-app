@@ -32,6 +32,13 @@
                 <label for="email">Email</label>
                 <ValidationMessage For="() => Input.Email" class="text-danger" />
             </div>
+
+            <div class="form-floating mb-3">
+                <InputText @bind-Value="Input.Name" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                <label for="name">Name</label>
+                <ValidationMessage For="() => Input.Name" class="text-danger" />
+            </div>
+
             <div class="form-floating mb-3">
                 <InputText type="password" @bind-Value="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
                 <label for="password">Password</label>
@@ -67,7 +74,11 @@
 
     public async Task RegisterUser(EditContext editContext)
     {
-        var user = CreateUser();
+        var user = new User()
+        {
+            Name = Input.Name,
+            CreatedAt = DateTime.Now,
+        };
 
         await UserStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
         var emailStore = GetEmailStore();
@@ -126,6 +137,9 @@
 
     private sealed class InputModel
     {
+        [Required]
+        public string Name { get; set; } = "";
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

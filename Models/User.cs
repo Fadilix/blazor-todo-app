@@ -10,8 +10,6 @@ namespace BlazorTodoApp.Models
 
         public string? Name { get; set; }
 
-        public string? PhoneNumber {  get; set; }
-
         public DateTime? CreatedAt { get; set; }
     }
 }
