@@ -286,3 +286,13 @@ C:\Users\MSI Stealth\source\repos\BlazorTodoApp\BlazorTodoApp\bin\Debug\net8.0\r
 C:\Users\MSI Stealth\source\repos\BlazorTodoApp\BlazorTodoApp\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\MSI Stealth\source\repos\BlazorTodoApp\BlazorTodoApp\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
 C:\Users\MSI Stealth\source\repos\BlazorTodoApp\BlazorTodoApp\obj\Debug\net8.0\BlazorTodoApp.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\MSI Stealth\source\repos\BlazorTodoApp\BlazorTodoApp\bin\Debug\net8.0\Microsoft.AspNetCore.Authorization.dll
+C:\Users\MSI Stealth\source\repos\BlazorTodoApp\BlazorTodoApp\bin\Debug\net8.0\Microsoft.AspNetCore.Components.dll
+C:\Users\MSI Stealth\source\repos\BlazorTodoApp\BlazorTodoApp\bin\Debug\net8.0\Microsoft.AspNetCore.Components.Forms.dll
+C:\Users\MSI Stealth\source\repos\BlazorTodoApp\BlazorTodoApp\bin\Debug\net8.0\Microsoft.AspNetCore.Components.QuickGrid.dll
+C:\Users\MSI Stealth\source\repos\BlazorTodoApp\BlazorTodoApp\bin\Debug\net8.0\Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter.dll
+C:\Users\MSI Stealth\source\repos\BlazorTodoApp\BlazorTodoApp\bin\Debug\net8.0\Microsoft.AspNetCore.Components.Web.dll
+C:\Users\MSI Stealth\source\repos\BlazorTodoApp\BlazorTodoApp\bin\Debug\net8.0\Microsoft.AspNetCore.Metadata.dll
+C:\Users\MSI Stealth\source\repos\BlazorTodoApp\BlazorTodoApp\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\MSI Stealth\source\repos\BlazorTodoApp\BlazorTodoApp\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\MSI Stealth\source\repos\BlazorTodoApp\BlazorTodoApp\bin\Debug\net8.0\Microsoft.JSInterop.dll

@@ -1,4 +1,5 @@
 ﻿using BlazorTodoApp.Context;
+using BlazorTodoApp.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 

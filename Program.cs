@@ -4,8 +4,8 @@ using BlazorTodoApp.Models;
 using BlazorTodoApp.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using BlazorTodoApp.Components.Account;
 using Microsoft.AspNetCore.Components.Authorization;
+using BlazorTodoApp.Components.Account;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,11 +29,12 @@ builder.Services.AddAuthentication(options =>
 })
 .AddIdentityCookies();
 
-
 builder.Services.AddIdentityCore<User>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<AppDbContext>()
     .AddSignInManager()
     .AddDefaultTokenProviders();
+
+builder.Services.AddSingleton<IEmailSender<User>, IdentityNoOpEmailSender>();
 
 //builder.Services.AddSingleton<IEmailSender<User>, IdentityNoOpEmailSender>();
 
@@ -64,5 +65,6 @@ app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 
 app.MapAdditionalIdentityEndpoints();;
+
 
 app.Run();

@@ -1,5 +1,6 @@
 ﻿using BlazorTodoApp.Context;
 using Microsoft.AspNetCore.Identity;
+using BlazorTodoApp.Models;
 
 namespace BlazorTodoApp.Components.Account
 {

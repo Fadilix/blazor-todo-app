@@ -13,7 +13,7 @@ namespace BlazorTodoApp.Context
         {
             base.OnModelCreating(builder);
 
-            // configured keys here because of an error
+            // configured keys here because of an error of primary key
             builder.Entity<IdentityUserLogin<string>>(entity =>
             {
                 entity.HasKey(login => new { login.LoginProvider, login.ProviderKey });
@@ -30,7 +30,7 @@ namespace BlazorTodoApp.Context
             });
 
 
-            // Creating the userr roles
+            // Creating the user roles
 
             var admin = new IdentityRole("admin");
             admin.NormalizedName = "admin";
@@ -45,7 +45,5 @@ namespace BlazorTodoApp.Context
 
         }
         public DbSet<Todo> Todos { get; set; }
-
-
     }
 }
