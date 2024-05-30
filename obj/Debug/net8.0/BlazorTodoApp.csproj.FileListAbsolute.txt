@@ -296,3 +296,6 @@ C:\Users\MSI Stealth\source\repos\BlazorTodoApp\BlazorTodoApp\bin\Debug\net8.0\M
 C:\Users\MSI Stealth\source\repos\BlazorTodoApp\BlazorTodoApp\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\MSI Stealth\source\repos\BlazorTodoApp\BlazorTodoApp\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\MSI Stealth\source\repos\BlazorTodoApp\BlazorTodoApp\bin\Debug\net8.0\Microsoft.JSInterop.dll
+C:\Users\MSI Stealth\source\repos\BlazorTodoApp\BlazorTodoApp\bin\Debug\net8.0\Microsoft.Extensions.Localization.dll
+C:\Users\MSI Stealth\source\repos\BlazorTodoApp\BlazorTodoApp\bin\Debug\net8.0\Microsoft.Extensions.Localization.Abstractions.dll
+C:\Users\MSI Stealth\source\repos\BlazorTodoApp\BlazorTodoApp\bin\Debug\net8.0\MudBlazor.dll

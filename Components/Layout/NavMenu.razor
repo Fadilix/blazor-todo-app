@@ -1,53 +1,45 @@
 @implements IDisposable
 @inject NavigationManager NavigationManager
-<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">BlazorTodoApp</a>
-    </div>
+
+
+<div style="background-color: #ccc">
+    <MudButton Icon="@Icons.Material.Filled.ToggleOff" @onclick="@ToggleDrawer">button</MudButton>
 </div>
-
-<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
-
-<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+<div class="nav-scrollable" @onclick="ToggleDrawer">
     <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-cloud d-flex align-items-center" aria-hidden="true"></span> Weather
-            </NavLink>
-        </div>
-
-
-        <AuthorizeView>
-            <Authorized>
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="addtodo">
-                        <span class="bi bi-pencil d-flex align-items-center" aria-hidden="true"></span> Add a todo
-                    </NavLink>
-                </div>
-
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="todolist">
-                        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Todos list
-                    </NavLink>
-                </div>
-            </Authorized>
-        </AuthorizeView>
+        <MudPaper Height="100vh" Style="overflow:hidden; position:relative; ">
+            <MudDrawerContainer Class="mud-height-full">
+                <MudDrawer @bind-Open="@open" Elevation="0" Variant="@DrawerVariant.Persistent" Color="Color.Primary">
+                    <MudDrawerHeader>
+                        <MudText Typo="Typo.h6">Todo App</MudText>
+                    </MudDrawerHeader>
+                    <MudNavMenu>
+                        <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Dashboard" IconColor="Color.Inherit" Href="home">Home</MudNavLink>
+                        <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.LocalLibrary" IconColor="Color.Inherit" Href="counter">Counter</MudNavLink>
+                        <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.People" IconColor="Color.Inherit" Href="weather">Weather</MudNavLink>
+                        <AuthorizeView>
+                            <Authorized>
+                                <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Dashboard" IconColor="Color.Inherit" Href="addtodo">Add todo</MudNavLink>
+                                <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Dashboard" IconColor="Color.Inherit" Href="todolist">Todo List</MudNavLink>
+                            </Authorized>
+                        </AuthorizeView>
+                    </MudNavMenu>
+                </MudDrawer>    
+            </MudDrawerContainer>
+        </MudPaper>
     </nav>
 </div>
 
 @code {
+
+    bool open = true;
+
+    void ToggleDrawer()
+    {
+        open = !open;
+    }
+
+
     private string? currentUrl;
     protected override void OnInitialized()
     {
