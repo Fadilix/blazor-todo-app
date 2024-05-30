@@ -29,17 +29,13 @@ builder.Services.AddAuthentication(options =>
 })
 .AddIdentityCookies();
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-
-builder.Services.AddDbContext<AppDbContext>(options => 
-    options.UseSqlServer(connectionString));
 
 builder.Services.AddIdentityCore<User>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<AppDbContext>()
     .AddSignInManager()
     .AddDefaultTokenProviders();
 
-builder.Services.AddSingleton<IEmailSender<User>, IdentityNoOpEmailSender>();
+//builder.Services.AddSingleton<IEmailSender<User>, IdentityNoOpEmailSender>();
 
 // My services 
 builder.Services.AddScoped<TodoService>();
