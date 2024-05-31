@@ -25,6 +25,11 @@ To set up the project, follow these steps:
        "DefaultConnection": "Server=server;Port=port;Database=mydb;User=root;Password=pass;"
      },
      ```
+   - Example
+     ```json
+     "ConnectionStrings" : {
+        "MyConnection" : "Server=localhost;Port=8081;Database=MyTodoDatabase;User=fadilix;Password=password123;"
+     },
 
 2. **Modify Database Configuration**:
    - If you're using a database other than MySQL, adjust the database configuration in the `Program.cs` file accordingly:
