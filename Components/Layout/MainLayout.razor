@@ -10,31 +10,26 @@
 <MudDialogProvider />
 <MudSnackbarProvider />
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-            @if (IsUserSignedIn)
-            {
-                <a href="/Account/Manage">Profile</a>
-                <a href="/Account/Logout">Logout</a>
-            }
-            else
-            {
-                <a href="/Account/Login">Login</a>
-                <a href="/Account/Register">Register</a>
-            }
-        </div>
-
-        <article class="content px-4">
+<MudLayout>
+    <MudAppBar Elevation="1" Dense="@dense">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" @onclick="@DrawerToggle" />
+        TodoListApplication
+    </MudAppBar>
+    <MudDrawer Style="background-color: #fff" @bind-Open="@_drawerOpen" ClipMode="clipMode" Breakpoint="breakpoint" PreserveOpenState="preserveOpenState" Elevation="1" Variant="DrawerVariant.Mini">
+        <MudNavMenu Style="height: 100vh;">
+            <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home" Href="/">Home</MudNavLink>
+            <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.PlusOne" Href="/counter">Counter</MudNavLink>
+            <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Cloud" Href="/weather">Weather</MudNavLink>
+            <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Add" Href="/addtodo">Add todo</MudNavLink>
+            <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.ViewList" Href="/todolist">Todo list</MudNavLink>
+        </MudNavMenu>
+    </MudDrawer>
+    <MudMainContent>
+        <div class="m-4">
             @Body
-        </article>
-    </main>
-</div>
+        </div>
+    </MudMainContent>
+</MudLayout>
 
 <div id="blazor-error-ui">
     An unhandled error has occurred.
@@ -44,6 +39,11 @@
 
 @code {
     private bool IsUserSignedIn;
+    bool _drawerOpen = false;
+    bool dense = false;
+    bool preserveOpenState = false;
+    Breakpoint breakpoint = Breakpoint.Lg;
+    DrawerClipMode clipMode = DrawerClipMode.Never;
 
     protected override async Task OnInitializedAsync()
     {
@@ -55,5 +55,11 @@
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
         var user = authState.User;
         return user.Identity.IsAuthenticated;
+    }
+
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+        Console.Write("gkh");
     }
 }
