@@ -15,6 +15,26 @@ This Todo app project was created to learn CRUD operations using **Blazor Web Ap
 - **Update a Todo**: Users can edit and update their existing todos.
 - **Delete a Todo**: Users can delete their todos.
 
-## Outcome
-It was a valuable learning experience. While I encountered some challenges at the beginning, I've made significant progress and feel confident in my abilities. Continuing to explore and improve upon this project will undoubtedly enhance my skills further.
+## Get Started
+To set up the project, follow these steps:
 
+1. **Configure Database Connection**:
+   - Open the `appsettings.json` file and replace the placeholder values with your actual database connection details:
+     ```json
+     "ConnectionStrings": {
+       "DefaultConnection": "Server=server;Port=port;Database=mydb;User=root;Password=pass;"
+     },
+     ```
+
+2. **Modify Database Configuration**:
+   - If you're using a database other than MySQL, adjust the database configuration in the `Program.cs` file accordingly:
+     ```csharp
+     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+     builder.Services.AddDbContext<AppDbContext>(options => {
+            options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+     };
+     ```
+3. **There you go**
+
+## Outcome
+This project provided an invaluable learning experience. Although I faced challenges initially, I've made significant progress and have gained confidence in my abilities. Continuing to iterate and refine this project will undoubtedly enhance my skills further.
