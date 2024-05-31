@@ -28,7 +28,7 @@ To set up the project, follow these steps:
    - Example
      ```json
      "ConnectionStrings" : {
-        "MyConnection" : "Server=localhost;Port=8081;Database=MyTodoDatabase;User=fadilix;Password=password123;"
+        "DefaultConnection" : "Server=localhost;Port=8081;Database=MyTodoDatabase;User=fadilix;Password=password123;"
      },
 
 2. **Modify Database Configuration**:
